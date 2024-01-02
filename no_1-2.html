@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jawaban No 1-2</title>
+  </head>
+  <style>
+    .center {
+      margin: auto;
+      width: 60%;
+      border: 3px solid green;
+      padding: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      color: #333;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+  <body>
+    <div class="center">
+      <h1>Label</h1>
+      <label id="labeled"></label>
+      <br />
+      <br />
+      <button onclick="changeLabel()">Change Label</button>
+    </div>
+    <script>
+      let data = [
+        {
+          id: 1,
+          nama: "Dimas Nur",
+          umur: 30,
+          kota: "Jakarta",
+        },
+        {
+          id: 2,
+          nama: "Abdul Rahman",
+          umur: 25,
+          kota: "Surabaya",
+        },
+        {
+          id: 3,
+          nama: "Ainun Octa",
+          umur: 21,
+          kota: "Malang",
+        },
+      ];
+      let label = document.getElementById("labeled");
+
+      let current = 0;
+
+      function changeLabel() {
+        current = (current + 1) % data.length;
+        updateLabel();
+      }
+      function updateLabel() {
+        const currentData = data[current];
+        labeled.innerHTML = `ID: ${currentData.id} | Nama: ${currentData.nama} | Umur: ${currentData.umur} | Kota: ${currentData.kota}`;
+      }
+
+      updateLabel();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jawaban No 7</title>
+  </head>
+  <style>
+    .center {
+      margin: auto;
+      width: 75%;
+      padding: 10px;
+    }
+    input,
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+  <body>
+    <div class="center">
+      <h1>HASH SHA-256</h1>
+      <br />
+      <h3 id="prehash">Input String:</h3>
+      <h3 id="hash">Hashed String (SHA-256):</h3>
+      <br />
+      <label for="tanggalHariIni">Tanggal</label> <br />
+
+      <input type="date" name="tanggalHariIni" id="tanggalHariIni" />
+      <label for="namaDepanAnda">Nama Depan</label> <br />
+
+      <input type="text" name="namaDepanAnda" id="namaDepanAnda" />
+      <label for="jenisKelamin">Jenis Kelamin</label> <br />
+
+      <select name="jenisKelamin" id="jenisKelamin">
+        <option value="">...</option>
+        <option value="pria">Pria</option>
+        <option value="wanita">Wanita</option>
+      </select>
+      <label for="ifabula">Ifabula</label> <br />
+
+      <input type="text" name="ifabula" id="ifabula" value="ifabula" readonly />
+      <br />
+      <button onclick="hashAndDisplay()">Kirim</button>
+    </div>
+    <script>
+      async function SHA256(inputString) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(inputString);
+        const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashedResult = hashArray
+          .map((byte) => byte.toString(16).padStart(2, "0"))
+          .join("");
+        return hashedResult;
+      }
+
+      function hashAndDisplay() {
+        let tanggalHariIni = document.getElementById("tanggalHariIni").value;
+        let namaDepanAnda = document.getElementById("namaDepanAnda").value;
+        let jenisKelamin = document.getElementById("jenisKelamin").value;
+        let ifabula = document.getElementById("ifabula").value;
+
+        let inputString =
+          tanggalHariIni + namaDepanAnda + jenisKelamin + ifabula;
+
+        SHA256(inputString)
+          .then((hashedString) => {
+            console.log(`Input String: ${inputString}`);
+            console.log(`Hashed String (SHA-256): ${hashedString}`);
+            document.getElementById(
+              "hash"
+            ).innerText = `Hashed String (SHA-256): ${hashedString}`;
+            document.getElementById(
+              "prehash"
+            ).innerText = `Input String: ${inputString}`;
+          })
+          .catch((error) => console.error(error));
+      }
+    </script>
+  </body>
+</html>

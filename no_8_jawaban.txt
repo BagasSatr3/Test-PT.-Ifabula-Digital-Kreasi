@@ -1,0 +1,10 @@
+1. line 23 (kurang koma)
+2. line 428 (kurang petik / "" penutup)
+3. line 437 (value belum diisi)
+4. line 540 -> sekarang line 545 (cleanA[] belum diisi argumen)
+5. line 527 (b.attributes kelebihan huruf s, seharusnya b.attribute)
+
+6. line 534 ditambahkan tmpStra.localeCompare(tmpStrb); agar dapat sort secara alfabet apabila jika cleanA dan cleanB 
+indeks
+
+7. line 562 ditambahkan tmpStra.localeCompare(tmpStrb); apabila index nya sama maka sort secara alfabet
